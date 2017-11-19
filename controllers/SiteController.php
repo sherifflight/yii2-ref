@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\SignupForm;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -103,9 +104,10 @@ class SiteController extends Controller
     /**
      * Signs user up.
      *
+     * @param null|integer $ref
      * @return mixed
      */
-    public function actionSignup()
+    public function actionSignup($ref = null)
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
@@ -115,8 +117,14 @@ class SiteController extends Controller
                 }
             }
         }
+
+        if (!$referral = User::findIdentity($ref)) {
+            $referral = null;
+        }
+
         return $this->render('signup', [
             'model' => $model,
+            'referral' => $referral
         ]);
     }
 
@@ -127,10 +135,16 @@ class SiteController extends Controller
      */
     public function actionProfile()
     {
+        /** @var User $user */
         $user = Yii::$app->user->identity;
 
+        if (!$referral = User::findIdentity($user->parent_ref_id)) {
+            $referral = null;
+        }
+
         return $this->render('profile', [
-            'user' => $user
+            'user' => $user,
+            'referral' => $referral
         ]);
     }
 }

@@ -3,9 +3,16 @@ namespace app\models;
 
 use yii\base\Model;
 
+/**
+ * @property integer parent_ref_id
+ * @property string email
+ * @property string username
+ * @property string password
+ */
 class SignupForm extends Model
 {
     public $username;
+    public $parent_ref_id;
     public $email;
     public $password;
 
@@ -26,6 +33,7 @@ class SignupForm extends Model
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This email address has already been taken.'],
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+            ['parent_ref_id', 'integer']
         ];
     }
 
@@ -43,6 +51,7 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->parent_ref_id = $this->parent_ref_id;
         $user->setPassword($this->password);
         $user->generateAuthKey();
 

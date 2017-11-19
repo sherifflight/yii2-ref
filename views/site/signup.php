@@ -4,6 +4,7 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \app\models\SignupForm */
+/** @var $referral \app\models\User|null */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -19,6 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
+
+            <?= !is_null($referral) ? 'Вы пришли от' . " $referral->username" : '' ?>
+
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
             <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
@@ -26,6 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'email') ?>
 
             <?= $form->field($model, 'password')->passwordInput() ?>
+
+            <?= $form->field($model, 'parent_ref_id')->hiddenInput(['value' => !is_null($referral) ? $referral->getId() : null])->label(false) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
