@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-lg-5">
 
-            <?= !is_null($referral) ? 'Вы пришли от' . " $referral->username" : '' ?>
+            <?= !is_null($referral) ? '<p>Вы пришли по приглашению пользователя ' . "<code>$referral->email</code></p>" : '' ?>
 
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 

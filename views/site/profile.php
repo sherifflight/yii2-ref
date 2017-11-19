@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div>Имя пользователя: <code><?= $user->username ?></code></div>
 
-            <div><?= !is_null($referral) ? 'Вы были приглашены пользователем <code>' . $referral->username . '</code>' : '' ?></div>
+            <div><?= !is_null($referral) ? 'Вы были приглашены пользователем <code>' . $referral->email . '</code>' : '' ?></div>
 
             <div>email: <code><?= $user->email ?></code></div>
 

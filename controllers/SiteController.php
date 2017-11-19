@@ -66,7 +66,7 @@ class SiteController extends Controller
             $this->redirect(['site/login']);
         }
 
-        return $this->render('index');
+        return $this->redirect(['site/profile']);
     }
 
     /**
