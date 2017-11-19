@@ -180,4 +180,9 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public function getChildrenUsers()
+    {
+        return $this->hasMany(User::className(), ['parent_ref_id' => 'id']);
+    }
 }
