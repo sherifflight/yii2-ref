@@ -123,6 +123,10 @@ class SiteController extends Controller
      */
     public function actionProfile()
     {
-        return $this->render('profile');
+        $user = Yii::$app->user->identity;
+
+        return $this->render('profile', [
+            'user' => $user
+        ]);
     }
 }
