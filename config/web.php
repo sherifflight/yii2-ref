@@ -12,6 +12,14 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'showScriptName' => false,
+            'enablePrettyUrl' => true,
+            'rules' => [
+                '<alias:\w+>' => 'site/<alias>',
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'FTGHkCXwlq-3MO_2sdM7BW0rNIDt_Otr',
