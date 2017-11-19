@@ -35,14 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
             echo '<table class="table">';
                 echo '<thead>';
                     echo '<tr>';
-                      echo '<th>Имя пользователя</th>';
+                      echo '<th>Email</th>';
                       echo '<th>Дата регистрации</th>';
                     echo '</tr>';
                 echo '</thead>';
                 echo '<tbody>';
                     foreach ($user->getChildrenUsers()->all() as $childrenUser) {
                         echo '<tr>';
-                            echo "<td>$childrenUser->username</td>";
+                            echo "<td>$childrenUser->email</td>";
                             echo "<td>" . Yii::$app->formatter->asDatetime($childrenUser->created_at, "php:d-m-Y H:i:s") . "</td>";
                         echo '</tr>';
                     }
